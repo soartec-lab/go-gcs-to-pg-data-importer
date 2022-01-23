@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  app:
+    image: golang:1.17.6-buster
+    volumes:
+      - ./:/app
+    working_dir: /app
+    tty: true
+    stdin_open: true
+    command: sh -c "/bin/bash"
+  postgresql:
+    image: postgres:13.4
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data/postgresql:/var/lib/postgresql
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+  gcs:
+    image: fsouza/fake-gcs-server
+    ports:
+      - "4443:4443"
+    volumes:
+      - ./data/gcs:/data
+ 
