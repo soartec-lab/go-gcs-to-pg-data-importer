@@ -21,4 +21,4 @@ services:
       - "4443:4443"
     volumes:
       - ./data/gcs:/data
- 
+    command: -scheme http -port 4443 -public-host gcs:4443
